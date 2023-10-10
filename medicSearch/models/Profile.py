@@ -11,6 +11,7 @@ class Profile(models.Model):
     favorites = models.ManyToManyField(User, blank=True, related_name='favorites')
     specialites = models.ManyToManyField(Speciality, blank=True, related_name='specialities')
     addresses = models.ManyToManyField(Address, blank=True,related_name='addresses')
+    image = models.ImageField(null=True,blank=True)
 
     def __str__(self):
         return '{}'.format(self.user.username)
