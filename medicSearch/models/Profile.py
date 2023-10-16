@@ -39,7 +39,7 @@ class Profile(models.Model):
         from .Rating import Rating
         try:
             ratings = Rating.objects.filter(
-                user_rated=self.user).aaggregate(Sum('value'), Count('user'))
+                user_rated=self.user).aggregate(Sum('value'), Count('user'))
             if ratings['user__count'] > 0:
                 scoring_average = ratings['value__sum'] / \
                     ratings['user__count']
