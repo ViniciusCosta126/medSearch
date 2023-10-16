@@ -19,7 +19,7 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields': ('role',)
         }),
         ('Extras', {
-            'fields': ('specialites', 'addresses')
+            'fields': ('specialities', 'addresses')
         })
     )
 
@@ -29,7 +29,7 @@ class ProfileAdmin(admin.ModelAdmin):
     birth.empty_value_display = '___/___/_____'
 
     def specialitiesList(self, obj):
-        return [i.name for i in obj.specialites.all()]
+        return [i.name for i in obj.specialities.all()]
 
     def addressesList(self, obj):
         return [i.name for i in obj.addresses.all()]
