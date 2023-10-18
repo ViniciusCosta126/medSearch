@@ -1,4 +1,4 @@
-# MedicSear
+# MedicSearch
 
 ## Rodando localmente
 
@@ -19,12 +19,6 @@ Crie a virtualenv para instalar as libs
 ```bash
     python3 -m venv env
 ```
-
-Instale as libs
-```bash
-    pip install -r requirements.txt
-``` 
-
 Ative a venv
 
 windows
@@ -35,6 +29,11 @@ windows
 linux ou macOS
 ```bash
     source nome_da_virtualenv/bin/activate 
+``` 
+
+Instale as libs
+```bash
+    pip install -r requirements.txt
 ``` 
 
 Para iniciar o servidor rode:
