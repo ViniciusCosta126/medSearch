@@ -1,4 +1,4 @@
-# MedicSear
+# MedicSearch
 
 ## Rodando localmente
 
