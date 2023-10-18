@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from medicSearch.models import Profile
 from django.core.paginator import Paginator
@@ -82,3 +82,29 @@ def add_favorite_view(request):
     arguments += f'&msg={msg}&type={_type}'
 
     return redirect(to=f'/medic/{arguments}')
+
+
+def remove_favorie_view(request):
+    page = request.POST.get('page')
+    id = request.POST.get('id')
+
+    try:
+        profile = Profile.objects.filter(user=request.user).first()
+        medic = Profile.objects.filter(user__id=id).first()
+        profile.favorites.remove(medic.user)
+        profile.save()
+        msg = 'Favorito removido com sucesso'
+        _type = "success"
+    except Exception as e:
+        print(f'Erro {e}')
+        msg = 'Um erro ocorreu ao remover o medico nos favoritos'
+        _type = 'danger'
+
+    if page:
+        arguments = f'%page={page}'
+    else:
+        arguments = "?page=1"
+
+    arguments += f'&msg={msg}&type={_type}'
+
+    return redirect(to=f'/profile/{arguments}')
