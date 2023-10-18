@@ -25,10 +25,10 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="#"> <i class="fa fa-user"></i> Perfil</a>
+            <a class="nav-link" href="{% url "profiles" %}"> <i class="fa fa-user"></i> Perfil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url "edit-profile" %}">
               <i class="fa fa-edit"></i> Editar Perfil</a
             >
           </li>
