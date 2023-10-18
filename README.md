@@ -19,6 +19,7 @@ Crie a virtualenv para instalar as libs
 ```bash
     python3 -m venv env
 ```
+
 Ative a venv
 
 windows
