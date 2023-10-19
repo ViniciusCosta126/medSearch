@@ -12,13 +12,11 @@
                 <div class="col-xs-12 col-md-3"	id="profile-area">
                     <div id="image-profile" style="background-image:url('/media/{{profile.image}}')"></div>
                     {% if profile.role == 1 %}
-                    <p	class="badge badge-primary text-center" id="badge-role">
-                        <i	class="fa fa-building"></i>Administrador
-                    </p>
+                    <p class="badge badge-primary text-center" id="badge-role"><i class="fa fa-building"></i> Administrador</p>
                     {% elif profile.role == 2 %}
-                    <p	class="badge badge-primary text-center" id="badge-role">
-                        <i	class="fa fa-user-md"></i>Médico
-                    </p>
+                    <p class="badge badge-primary text-center" id="badge-role"><i class="fa fa-user-md"></i> Médico</p>
+                    {% else %}
+                    <p class="badge badge-primary text-center" id="badge-role"><i class="fa fa-user"></i> Paciente</p>
                     {% endif %}
                     {%	if	profile.user.id	==	request.user.id	%}
 						<a id="icon-edit" href="#"><i	class="fa fa-edit"></i></a>
@@ -31,6 +29,14 @@
                         {% if profile.role == 2 %}
                         <li	class="list-group-item">Nota: {{ profile.show_scoring_average	}}</li>
                         <li	class="list-group-item">Especialidades:	{{ profile.specialties.all	| join:", " }}</li>
+                        {% endif %}
+
+                        {% if profile.role == 2 and request.user.is_authenticated %}
+                            <li class="list-group-item">
+                                <a href="{% url "rate-medic" profile.user.id %}" class="btn btn-warning">
+                                    Avaliar <i class="fa fa-star"></i>
+                                </a>
+                            </li>
                         {% endif %}
                     </ul>
                 </div>
