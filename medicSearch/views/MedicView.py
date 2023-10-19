@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from medicSearch.forms.MedicForm import MedicRatingForm
 from medicSearch.models import Profile, Rating
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 def list_medics_view(request):
@@ -110,7 +111,7 @@ def remove_favorie_view(request):
 
     return redirect(to=f'/profile/{arguments}')
 
-
+@login_required
 def rate_medic(request, medic_id=None):
     """Função para avaliar um medico"""
     medic = Profile.objects.filter(user__id=medic_id).first()

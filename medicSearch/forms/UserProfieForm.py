@@ -8,6 +8,7 @@ class UserProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         if self.instance and self.instance.role != 1:
+            print(self.instance.role)
             del self.fields['role']
 
     class Meta:
