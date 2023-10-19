@@ -42,7 +42,7 @@ def edit_profile(request):
         userForm = UserForm(request.POST, instance=request.user)
 
         verifyEmail = Profile.objects.filter(
-            user__email=request.POST['email']).exclude(user__id=request.user.id).firts()
+            user__email=request.POST['email']).exclude(user__id=request.user.id).first()
         emailUnused = verifyEmail is None
 
     else:
