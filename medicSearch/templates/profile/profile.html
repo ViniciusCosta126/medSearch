@@ -19,7 +19,7 @@
                     <p class="badge badge-primary text-center" id="badge-role"><i class="fa fa-user"></i> Paciente</p>
                     {% endif %}
                     {%	if	profile.user.id	==	request.user.id	%}
-						<a id="icon-edit" href="#"><i	class="fa fa-edit"></i></a>
+						<a id="icon-edit" href="{% url "edit-profile" %}"><i	class="fa fa-edit"></i></a>
 					{%	endif	%}
                     <ul	class="list-group">
                         <li	class="list-group-item">Nome: {{profile.user.get_full_name | default:"Sem nome"}}</li>

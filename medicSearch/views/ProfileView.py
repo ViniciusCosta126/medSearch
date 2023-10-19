@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from medicSearch.models import Profile
 from django.core.paginator import Paginator
 from medicSearch.forms.UserProfieForm import UserProfileForm, UserForm
-
+from django.contrib.auth.decorators import login_required
 
 def list_profile_view(request, id=None):
     """Função para fazer a listagem de perfil"""
@@ -29,7 +29,7 @@ def list_profile_view(request, id=None):
 
     return render(request, template_name='profile/profile.html', context=context, status=200)
 
-
+@login_required
 def edit_profile(request):
     """Função para edicao dde um perfil"""
     profile = get_object_or_404(Profile, user=request.user)
