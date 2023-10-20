@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from medicSearch.forms.AuthForm import LoginForm, RegisterForm
+from medicSearch.models import Profile
 
 
 def login_view(request):
@@ -57,6 +58,7 @@ def register_view(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
+        role = request.POST['role']
         registerForm = RegisterForm(request.POST)
 
         if registerForm.is_valid():
@@ -75,6 +77,9 @@ def register_view(request):
             else:
                 user = User.objects.create_user(username, email, password)
 
+                profile = Profile.objects.filter(id=user.id).first()
+                profile.role = role
+                profile.save()
                 if user is not None:
                     message = {'type': 'success',
                                'text': 'Conta criada com sucesso!'}
@@ -91,6 +96,7 @@ def register_view(request):
         'link_href': '/login'
     }
     return render(request, template_name='auth/auth.html', context=context, status=200)
+
 
 def logout_view(request):
     logout(request)
